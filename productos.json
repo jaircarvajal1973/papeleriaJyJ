@@ -11,15 +11,15 @@
  "productos": [
   {
    "id": "p1",
-   "nombre": "Cuaderno argollado pastel 100 hojas y prueba",
+   "nombre": "Cuaderno argollado grande, 80 hojas",
    "categoria": "Cuadernos",
-   "descripcion": "Tapa dura en tonos pastel, hojas cuadriculadas.",
-   "precio": 12500,
-   "precioOferta": 9900,
+   "descripcion": "Tapa dura en diferentes motivos, hojas cuadriculadas, hoja de stickers.",
+   "precio": 22,
+   "precioOferta": 20,
    "disponibilidad": "disponible",
    "destacado": true,
-   "emoji": "📒",
-   "imagen": ""
+   "emoji": "📒✨",
+   "imagen": "imagenes/p1-mv1f39b6.jpg"
   },
   {
    "id": "p2",
