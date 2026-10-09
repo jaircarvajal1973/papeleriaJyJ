@@ -10,6 +10,18 @@
  },
  "productos": [
   {
+   "id": "pmv1f78tm",
+   "nombre": "Borrador de nata",
+   "categoria": "Utiles",
+   "descripcion": "Borrador de nata 10 cm",
+   "precio": 1000,
+   "precioOferta": "",
+   "disponibilidad": "disponible",
+   "destacado": true,
+   "emoji": "📒",
+   "imagen": "imagenes/pmv1f78tm-mv1fbq20.jpg"
+  },
+  {
    "id": "p1",
    "nombre": "Cuaderno argollado grande, 80 hojas",
    "categoria": "Cuadernos",
