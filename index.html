@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JyJ Papelería</title>
+<meta name="description" content="Papelería JyJ - cuadernos, agendas, colores y más">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@500;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --fondo:#fff6f9;
+    --tarjeta:#ffffff;
+    --rosa-claro:#fde8f0;
+    --rosa:#f9d5e3;
+    --rosa-medio:#f2a7c3;
+    --rosa-fuerte:#d96d98;
+    --rosa-oscuro:#b84f7b;
+    --hero:linear-gradient(120deg,#fbd3e2 0%,#f1defa 50%,#ffe3d4 100%);
+    --texto:#5e4352;
+    --suave:#9c8190;
+    --borde:#f3dbe5;
+    --menta:#d6f2e7;
+    --lila:#e8ddf8;
+    --durazno:#ffe4d6;
+    --amarillo:#fff1c9;
+    --sombra:0 10px 28px rgba(150,90,120,.13);
+    --radio:22px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Quicksand',system-ui,sans-serif;color:var(--texto);line-height:1.5;min-height:100vh;
+    background:
+      radial-gradient(circle at 10% 0%, var(--rosa-claro) 0, transparent 40%),
+      radial-gradient(circle at 95% 20%, #efe6fb 0, transparent 35%),
+      var(--fondo);
+  }
+  img{max-width:100%;display:block}
+  button,input,select,textarea{font:inherit;color:inherit}
+  .contenedor{max-width:1180px;margin:0 auto;padding:0 16px}
+
+  /* ---------- Encabezado ---------- */
+  header{position:sticky;top:0;z-index:30;background:rgba(255,246,249,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--borde)}
+  .barra{display:flex;align-items:center;justify-content:space-between;height:72px;gap:12px}
+  .logo{
+    font-family:'Great Vibes',cursive;font-size:2.4rem;line-height:1;color:var(--rosa-fuerte);
+    text-shadow:2px 2px 0 var(--rosa);user-select:none;-webkit-user-select:none;cursor:default;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;-webkit-tap-highlight-color:transparent;
+    padding:6px 8px 6px 12px
+  }
+  .nav{display:flex;align-items:center;gap:8px;flex-shrink:0}
+  .nav a{color:var(--texto);text-decoration:none;font-weight:600;padding:8px 12px;border-radius:999px}
+  .nav a:hover{background:var(--rosa-claro)}
+  .btn-carrito{
+    position:relative;border:0;cursor:pointer;background:var(--rosa-fuerte);color:#fff;font-weight:700;
+    padding:10px 18px;border-radius:999px;display:flex;align-items:center;gap:8px;box-shadow:0 6px 16px rgba(0,0,0,.12)
+  }
+  .btn-carrito:hover{background:var(--rosa-oscuro)}
+  .burbuja{background:#fff;color:var(--rosa-fuerte);border-radius:999px;min-width:22px;height:22px;font-size:.8rem;display:grid;place-items:center;padding:0 6px}
+
+  /* ---------- Portada ---------- */
+  .hero{margin:28px 0 8px;border-radius:32px;overflow:hidden;position:relative;background:var(--hero);padding:56px 32px;text-align:center;box-shadow:var(--sombra)}
+  .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.45)}
+  .hero::before{width:220px;height:220px;top:-80px;left:-60px}
+  .hero::after{width:160px;height:160px;bottom:-60px;right:-30px}
+  .hero-nombre{
+    font-family:'Great Vibes',cursive;font-size:clamp(3.2rem,11vw,6.5rem);line-height:1.05;color:var(--rosa-fuerte);
+    text-shadow:3px 3px 0 #fff;position:relative;z-index:1;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent
+  }
+  .flores{font-size:1.4rem;letter-spacing:10px;margin-top:6px;opacity:.9;position:relative}
+  .hero-eslogan{font-family:'Playfair Display',serif;font-size:clamp(1.1rem,3vw,1.5rem);margin-top:10px;position:relative}
+  .hero-mensaje{margin:18px auto 0;max-width:580px;color:var(--suave);font-weight:500;position:relative}
+  .hero .btn{margin-top:22px;position:relative}
+  .cinta-oferta{margin:18px 0 0;border-radius:999px;padding:12px 20px;text-align:center;background:var(--amarillo);font-weight:700;border:2px dashed #f0d283}
+
+  /* ---------- Filtros ---------- */
+  .seccion-titulo{font-family:'Playfair Display',serif;font-size:2rem;text-align:center;margin:44px 0 6px}
+  .seccion-sub{text-align:center;color:var(--suave);margin-bottom:22px}
+  .filtros{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:22px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{border:1.5px solid var(--borde);background:#fff;padding:8px 16px;border-radius:999px;cursor:pointer;font-weight:600;transition:.2s}
+  .chip:hover{border-color:var(--rosa-medio)}
+  .chip.activo{background:var(--rosa-fuerte);border-color:var(--rosa-fuerte);color:#fff}
+  .controles{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .buscar,.ordenar{border:1.5px solid var(--borde);background:#fff;border-radius:999px;padding:9px 16px;outline:none;min-width:0}
+  .buscar:focus,.ordenar:focus{border-color:var(--rosa-medio)}
+  .switch{display:flex;align-items:center;gap:6px;font-weight:600;cursor:pointer;background:#fff;border:1.5px solid var(--borde);padding:8px 14px;border-radius:999px}
+  .switch input{accent-color:var(--rosa-fuerte);width:16px;height:16px}
+
+  /* ---------- Productos ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px}
+  .card{background:var(--tarjeta);border-radius:var(--radio);overflow:hidden;box-shadow:var(--sombra);display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s;border:1px solid var(--borde)}
+  .card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(150,90,120,.2)}
+  .card-img{position:relative;aspect-ratio:1/1;background:var(--rosa-claro);overflow:hidden}
+  .card-img img{width:100%;height:100%;object-fit:cover}
+  .sin-foto{width:100%;height:100%;display:grid;place-items:center;font-size:4.5rem}
+  .badge-oferta{position:absolute;top:12px;left:12px;background:var(--rosa-fuerte);color:#fff;font-weight:700;padding:6px 12px;border-radius:999px;font-size:.85rem}
+  .badge-dest{position:absolute;top:12px;right:12px;background:#fff;color:var(--rosa-fuerte);font-weight:700;padding:5px 10px;border-radius:999px;font-size:.78rem}
+  .card-agotado .card-img{filter:grayscale(.55) opacity(.75)}
+  .card-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .cat{font-size:.75rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--rosa-fuerte);font-weight:700}
+  .card h3{font-family:'Playfair Display',serif;font-size:1.12rem;line-height:1.3}
+  .desc{color:var(--suave);font-size:.9rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .precios{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+  .antes{text-decoration:line-through;color:var(--suave);font-size:.9rem}
+  .ahora{font-size:1.3rem;font-weight:700}
+  .ahora.oferta{color:var(--rosa-fuerte)}
+  .estado{align-self:flex-start;font-size:.78rem;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap}
+  .estado-ok{background:var(--menta);color:#3c7a63}
+  .estado-pocas{background:var(--durazno);color:#b2603a}
+  .estado-encargo{background:var(--lila);color:#6d55a0}
+  .estado-agotado{background:#eee5e9;color:#8d7480}
+  .vacio{text-align:center;padding:50px 20px;color:var(--suave);font-weight:600;grid-column:1/-1}
+  .vacio small{display:block;font-weight:500;max-width:520px;margin:8px auto 0}
+
+  /* ---------- Botones ---------- */
+  .btn{border:0;cursor:pointer;border-radius:999px;padding:11px 20px;font-weight:700;transition:.2s;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+  .btn-rosa{background:var(--rosa-fuerte);color:#fff}
+  .btn-rosa:hover{background:var(--rosa-oscuro)}
+  .btn-suave{background:var(--rosa-claro);color:var(--rosa-oscuro)}
+  .btn-suave:hover{background:var(--rosa)}
+  .btn-borde{background:#fff;border:1.5px solid var(--borde);color:var(--texto)}
+  .btn-borde:hover{border-color:var(--rosa-medio)}
+  .btn-peligro{background:#fde3e3;color:#b04545}
+  .btn-peligro:hover{background:#f9cccc}
+  .btn:disabled{background:#eee5e9;color:#a8949e;cursor:not-allowed}
+  .btn-chico{padding:7px 14px;font-size:.85rem}
+  .card .btn{margin-top:8px;width:100%}
+  .btn-wa{background:#25d366;color:#fff}
+  .btn-wa:hover{background:#1eb257}
+
+  /* ---------- Pie ---------- */
+  footer{margin-top:70px;background:linear-gradient(180deg,transparent,var(--rosa-claro));padding:40px 0 30px;text-align:center}
+  footer .logo{font-size:2.8rem;display:inline-block;max-width:100%}
+  .contactos{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:14px 0}
+  .pie-legal{color:var(--suave);font-size:.85rem}
+  .wa-flotante{position:fixed;right:18px;bottom:18px;z-index:25;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 8px 20px rgba(0,0,0,.18)}
+  .wa-flotante svg{width:30px;height:30px}
+
+  /* ---------- Carrito ---------- */
+  .fondo-oscuro{position:fixed;inset:0;background:rgba(94,67,82,.35);z-index:40;opacity:0;pointer-events:none;transition:.25s}
+  .fondo-oscuro.abierto{opacity:1;pointer-events:auto}
+  .carrito{position:fixed;top:0;right:0;height:100%;width:min(400px,100%);background:#fff;z-index:50;transform:translateX(105%);transition:transform .3s;display:flex;flex-direction:column;box-shadow:-10px 0 30px rgba(0,0,0,.08)}
+  .carrito.abierto{transform:none}
+  .carrito-cab{display:flex;justify-content:space-between;align-items:center;padding:20px;border-bottom:1px solid var(--borde)}
+  .carrito-cab h2{font-family:'Playfair Display',serif}
+  .cerrar{border:0;background:var(--rosa-claro);width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:1.1rem;flex-shrink:0}
+  .carrito-items{flex:1;overflow:auto;padding:12px 20px}
+  .item{display:flex;gap:12px;padding:12px 0;border-bottom:1px dashed var(--borde);align-items:center}
+  .item-img{width:62px;height:62px;border-radius:14px;overflow:hidden;flex-shrink:0;background:var(--rosa-claro)}
+  .item-img img{width:100%;height:100%;object-fit:cover}
+  .item-img .sin-foto{font-size:1.8rem}
+  .item-info{flex:1;min-width:0}
+  .item-info strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .item-info small{color:var(--suave)}
+  .cantidad{display:flex;align-items:center;gap:6px;margin-top:4px}
+  .cantidad button{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--borde);background:#fff;cursor:pointer;font-weight:700}
+  .quitar{border:0;background:none;cursor:pointer;font-size:1.1rem}
+  .carrito-pie{padding:20px;border-top:1px solid var(--borde);display:grid;gap:10px}
+  .total{display:flex;justify-content:space-between;font-size:1.2rem;font-weight:700}
+
+  /* ---------- Modales ---------- */
+  .modal{position:fixed;inset:0;z-index:60;display:none;align-items:flex-start;justify-content:center;padding:24px 12px;overflow:auto;background:rgba(94,67,82,.42)}
+  .modal.abierto{display:flex}
+  .modal.centro{align-items:center}
+  .modal-caja{background:#fff;border-radius:26px;width:min(920px,100%);box-shadow:0 20px 60px rgba(0,0,0,.2);overflow:hidden;margin:auto 0}
+  .modal-caja.chica{width:min(400px,100%)}
+  .modal-cab{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 20px;background:var(--hero);flex-wrap:wrap}
+  .modal-cab h2{font-family:'Playfair Display',serif;font-size:1.35rem}
+  .titulo-modal{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:12px}
+  .tabs{display:flex;gap:6px;padding:12px 20px 0;border-bottom:1px solid var(--borde);flex-wrap:wrap}
+  .tab{border:0;background:none;padding:10px 14px;border-radius:12px 12px 0 0;cursor:pointer;font-weight:700;color:var(--suave)}
+  .tab.activo{background:var(--rosa-claro);color:var(--rosa-oscuro)}
+  .modal-cuerpo{padding:22px}
+  .estado-guardado{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.85rem;font-weight:600;background:rgba(255,255,255,.75);padding:5px 12px;border-radius:999px;margin-top:4px}
+  .estado-guardado.error{background:#fde3e3;color:#a03c3c}
+  .estado-guardado button{border:0;background:var(--rosa-fuerte);color:#fff;border-radius:999px;padding:3px 10px;cursor:pointer;font-weight:700;font-size:.8rem}
+
+  .candado{font-size:3rem;text-align:center}
+  .login h2{text-align:center;font-family:'Playfair Display',serif;margin:6px 0 4px}
+  .login p{text-align:center;color:var(--suave);margin-bottom:16px}
+  .clave-caja{position:relative}
+  .clave-caja input{padding-right:46px !important}
+  .ojo{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:none;cursor:pointer;font-size:1.1rem}
+  .error{color:#b04545;font-weight:600;min-height:1.3em;font-size:.9rem;margin-top:6px}
+  .sacudir{animation:sacudir .4s}
+  @keyframes sacudir{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+
+  .admin-top{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+  .admin-top .buscar{flex:1;min-width:180px}
+  .ayuda{color:var(--suave);font-size:.85rem;margin:6px 0 14px}
+  .fila-admin{display:flex;align-items:center;gap:12px;padding:10px;border-radius:16px;border:1px solid var(--borde);margin-bottom:10px}
+  .fila-admin .item-img{width:56px;height:56px}
+  .fila-admin .acciones{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
+  .mini-select{border:1.5px solid var(--borde);border-radius:999px;padding:6px 10px;background:#fffafc;font-size:.85rem;font-weight:600;cursor:pointer}
+  .form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .campo{display:flex;flex-direction:column;gap:5px}
+  .campo.ancho{grid-column:1/-1}
+  .campo label{font-weight:700;font-size:.9rem}
+  .campo small{color:var(--suave);font-size:.8rem;font-weight:500}
+  .campo input[type=text],.campo input[type=number],.campo input[type=url],.campo input[type=tel],.campo input[type=password],.campo select,.campo textarea{
+    border:1.5px solid var(--borde);border-radius:14px;padding:10px 12px;outline:none;background:#fffafc;width:100%
+  }
+  .campo input:focus,.campo select:focus,.campo textarea:focus{border-color:var(--rosa-medio)}
+  .campo textarea{min-height:80px;resize:vertical}
+  .check{display:flex;align-items:center;gap:8px;font-weight:600;cursor:pointer}
+  .check input{accent-color:var(--rosa-fuerte);width:18px;height:18px}
+  .opcion{display:flex;gap:10px;align-items:flex-start;border:1.5px solid var(--borde);border-radius:16px;padding:12px 14px;cursor:pointer;margin-top:6px;font-weight:500 !important}
+  .opcion input{accent-color:var(--rosa-fuerte);margin-top:4px;width:18px;height:18px;flex-shrink:0}
+  .opcion:has(input:checked){border-color:var(--rosa-fuerte);background:var(--rosa-claro)}
+  .colores{display:flex;gap:10px;flex-wrap:wrap}
+  .color{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;font-size:.8rem;font-weight:600 !important}
+  .color input{position:absolute;opacity:0;pointer-events:none}
+  .color span{width:46px;height:46px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px var(--borde)}
+  .color input:checked + span{box-shadow:0 0 0 3px var(--texto)}
+  .foto-zona{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .foto-prev{width:110px;height:110px;border-radius:18px;overflow:hidden;background:var(--rosa-claro);flex-shrink:0}
+  .foto-prev img{width:100%;height:100%;object-fit:cover}
+  .foto-prev .sin-foto{font-size:2.6rem}
+  .barra-acciones{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:10px}
+  .nota{background:var(--rosa-claro);border-radius:16px;padding:14px 16px;font-size:.92rem}
+  details{background:#fffafc;border:1.5px dashed var(--borde);border-radius:14px;padding:10px 14px;font-size:.9rem}
+  details summary{cursor:pointer;font-weight:700;color:var(--rosa-oscuro)}
+  details ol{padding-left:20px;margin-top:8px}
+  details li{margin:5px 0}
+
+  .toast{position:fixed;top:86px;left:50%;transform:translate(-50%,-20px);opacity:0;z-index:90;background:var(--texto);color:#fff;padding:12px 20px;border-radius:999px;font-weight:600;transition:.3s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+  .toast.visible{opacity:1;transform:translate(-50%,0)}
+
+  @media (max-width:640px){
+    .nav a{display:none}
+    .logo{font-size:2rem}
+    .btn-carrito{padding:9px 14px}
+    .hero{padding:40px 18px;border-radius:24px}
+    .grid{grid-template-columns:repeat(2,1fr);gap:12px}
+    .card-body{padding:12px}
+    .card h3{font-size:1rem}
+    .ahora{font-size:1.1rem}
+    .desc{-webkit-line-clamp:2}
+    .filtros,.controles{flex-direction:column;align-items:stretch}
+    .form{grid-template-columns:1fr}
+    .fila-admin{flex-wrap:wrap}
+    .fila-admin .acciones{width:100%;justify-content:flex-start}
+    .modal{padding:10px 8px}
+    .modal-cuerpo{padding:16px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="contenedor barra">
+    <div class="logo" id="logo">JyJ Papelería</div>
+    <nav class="nav">
+      <a href="#productos">Productos</a>
+      <a href="#contacto">Contacto</a>
+      <button class="btn-carrito" id="abrir-carrito" type="button">🛍️ Mi pedido <span class="burbuja" id="contador">0</span></button>
+    </nav>
+  </div>
+</header>
+
+<main class="contenedor">
+  <section class="hero">
+    <div class="hero-nombre" id="hero-nombre">JyJ Papelería</div>
+    <div class="flores">📚 ✏️ 🌸</div>
+    <p class="hero-eslogan" id="hero-eslogan"></p>
+    <p class="hero-mensaje" id="hero-mensaje"></p>
+    <a href="#productos" class="btn btn-rosa">Ver productos ♡</a>
+  </section>
+
+  <div class="cinta-oferta" id="cinta-oferta" hidden></div>
+
+  <section id="productos">
+    <h2 class="seccion-titulo">Nuestros productos</h2>
+    <p class="seccion-sub">Elige tus favoritos y envíanos tu pedido por WhatsApp 💕</p>
+    <div class="filtros">
+      <div class="chips" id="chips"></div>
+      <div class="controles">
+        <input class="buscar" id="buscar" type="search" placeholder="🔍 Buscar...">
+        <select class="ordenar" id="ordenar">
+          <option value="destacados">Destacados</option>
+          <option value="menor">Menor precio</option>
+          <option value="mayor">Mayor precio</option>
+          <option value="nombre">Nombre A-Z</option>
+        </select>
+        <label class="switch"><input type="checkbox" id="solo-ofertas"> Solo ofertas</label>
+      </div>
+    </div>
+    <div class="grid" id="grid"><div class="vacio">Cargando productos… 🌸</div></div>
+  </section>
+</main>
+
+<footer id="contacto">
+  <div class="contenedor">
+    <div class="logo" id="pie-nombre">JyJ Papelería</div>
+    <p id="pie-eslogan" class="pie-legal"></p>
+    <div class="contactos" id="contactos"></div>
+    <p class="pie-legal">© <span id="anio"></span> <span id="pie-nombre-2">JyJ Papelería</span> · Hecho con amor 💗</p>
+  </div>
+</footer>
+
+<a class="wa-flotante" id="wa-flotante" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" hidden>
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.43 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.16-3.48-8.41"/></svg>
+</a>
+
+<!-- Carrito -->
+<div class="fondo-oscuro" id="fondo"></div>
+<aside class="carrito" id="carrito" aria-label="Mi pedido">
+  <div class="carrito-cab">
+    <h2>Mi pedido 🛍️</h2>
+    <button class="cerrar" id="cerrar-carrito" type="button" aria-label="Cerrar">✕</button>
+  </div>
+  <div class="carrito-items" id="carrito-items"></div>
+  <div class="carrito-pie">
+    <div class="total"><span>Total</span><span id="total">$0</span></div>
+    <button class="btn btn-wa" id="enviar-pedido" type="button">Enviar pedido por WhatsApp</button>
+    <button class="btn btn-borde btn-chico" id="vaciar" type="button">Vaciar pedido</button>
+  </div>
+</aside>
+
+<!-- Clave de acceso -->
+<div class="modal centro" id="modal-clave">
+  <div class="modal-caja chica" id="clave-caja">
+    <div class="modal-cuerpo" id="clave-contenido"></div>
+  </div>
+</div>
+
+<!-- Panel superadmin -->
+<div class="modal" id="admin">
+  <div class="modal-caja">
+    <div class="modal-cab">
+      <div>
+        <h2>✨ Superadmin</h2>
+        <div class="estado-guardado" id="estado-guardado"></div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="btn btn-borde btn-chico" id="salir" type="button">🔒 Cerrar sesión</button>
+        <button class="cerrar" id="cerrar-admin" type="button" aria-label="Cerrar">✕</button>
+      </div>
+    </div>
+    <div class="tabs">
+      <button class="tab activo" data-tab="lista" type="button">📚 Productos</button>
+      <button class="tab" data-tab="tienda" type="button">🏡 Mi papelería</button>
+      <button class="tab" data-tab="seguridad" type="button">🔐 Seguridad</button>
+    </div>
+    <div class="modal-cuerpo" id="admin-contenido"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* =========================================================
+     UTILIDADES
+     ========================================================= */
+  const $ = (s) => document.querySelector(s);
+  const $$ = (s) => Array.from(document.querySelectorAll(s));
+  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const copiar = (o) => JSON.parse(JSON.stringify(o));
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+  function lsDel(k) { try { localStorage.removeItem(k); } catch (e) {} }
+
+  const ARCHIVO = "productos.json";
+  const CLAVE_CARRITO = "jyj-carrito";
+  const CLAVE_BORRADOR = "jyj-borrador";
+
+  const ESTADOS = {
+    disponible: { txt: "Disponible", cls: "ok" },
+    pocas: { txt: "¡Últimas unidades!", cls: "pocas" },
+    encargo: { txt: "Por encargo", cls: "encargo" },
+    agotado: { txt: "Agotado", cls: "agotado" }
+  };
+  // [claro, base, medio, fuerte, oscuro, fondo portada]
+  const TEMAS = {
+    rosa:    { nombre: "Rosa",    c: ["#fde8f0", "#f9d5e3", "#f2a7c3", "#d96d98", "#b84f7b", "linear-gradient(120deg,#fbd3e2 0%,#f1defa 50%,#ffe3d4 100%)"] },
+    lila:    { nombre: "Lila",    c: ["#f1eafb", "#e3d6f7", "#c6aef0", "#9b7bd4", "#7a5bb5", "linear-gradient(120deg,#e6dcfa 0%,#fbe0ec 50%,#e0eefb 100%)"] },
+    menta:   { nombre: "Menta",   c: ["#e6f7f0", "#cdeee0", "#9fdcc3", "#4fae8a", "#3a8a6c", "linear-gradient(120deg,#d5f2e6 0%,#eef7d9 50%,#fde6ee 100%)"] },
+    durazno: { nombre: "Durazno", c: ["#fff0e8", "#ffe0d1", "#ffbf9f", "#e8865c", "#c96a42", "linear-gradient(120deg,#ffe2d2 0%,#fff1c9 50%,#fbd8e4 100%)"] },
+    celeste: { nombre: "Celeste", c: ["#e8f4fd", "#d3e9fb", "#a6d0f3", "#5b9fd6", "#3f7fb5", "linear-gradient(120deg,#d6ebfb 0%,#e9e0fa 50%,#fde3ec 100%)"] }
+  };
+  const GRADIENTES = [
+    "linear-gradient(135deg,#fde2ec,#e9defa)",
+    "linear-gradient(135deg,#ffe6d8,#fbd3e2)",
+    "linear-gradient(135deg,#dff4ec,#fde2ec)",
+    "linear-gradient(135deg,#efe4fb,#ffe9d9)",
+    "linear-gradient(135deg,#fff1c9,#fbd3e2)"
+  ];
+  const VACIO = {
+    tienda: { nombre: "JyJ Papelería", eslogan: "", mensaje: "", whatsapp: "", instagram: "", moneda: "COP", tema: "rosa" },
+    productos: [],
+    acceso: null
+  };
+  function normalizar(d) {
+    d = d && typeof d === "object" ? d : {};
+    return {
+      tienda: Object.assign({}, VACIO.tienda, d.tienda || {}),
+      productos: Array.isArray(d.productos) ? d.productos : [],
+      acceso: d.acceso || null
+    };
+  }
+
+  /* =========================================================
+     ESTADO
+     ========================================================= */
+  let datos = normalizar(null);
+  let cargaFallida = false;
+  let carrito = (() => { try { return JSON.parse(lsGet(CLAVE_CARRITO)) || {}; } catch (e) { return {}; } })();
+  const filtro = { cat: "Todas", q: "", ofertas: false, orden: "destacados" };
+  let sesion = null;          // { modo, clave, token, owner, repo, branch, sha }
+  const cacheImg = {};        // fotos recién subidas (para verlas antes de que el hosting se actualice)
+
+  /* =========================================================
+     PRECIOS E IMÁGENES
+     ========================================================= */
+  function dinero(n) {
+    try {
+      return new Intl.NumberFormat("es-CO", { style: "currency", currency: datos.tienda.moneda || "COP", maximumFractionDigits: 0 }).format(Number(n) || 0);
+    } catch (e) { return "$" + Math.round(Number(n) || 0); }
+  }
+  function enOferta(p) {
+    const o = Number(p.precioOferta);
+    return p.precioOferta !== "" && p.precioOferta != null && o > 0 && o < Number(p.precio);
+  }
+  const precioFinal = (p) => (enOferta(p) ? Number(p.precioOferta) : Number(p.precio));
+  const descuento = (p) => Math.round(100 - (Number(p.precioOferta) / Number(p.precio)) * 100);
+  function gradiente(id) {
+    let h = 0;
+    for (const ch of String(id)) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+    return GRADIENTES[h % GRADIENTES.length];
+  }
+  function imagenHTML(p) {
+    const src = cacheImg[p.imagen] || p.imagen;
+    if (src) return `<img src="${esc(src)}" alt="${esc(p.nombre)}" loading="lazy">`;
+    return `<div class="sin-foto" style="background:${gradiente(p.id)}">${esc(p.emoji || "📒")}</div>`;
+  }
+  const numeroWA = () => String(datos.tienda.whatsapp || "").replace(/\D/g, "");
+
+  let toastTimer;
+  function toast(msg) {
+    const t = $("#toast");
+    t.textContent = msg;
+    t.classList.add("visible");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove("visible"), 2800);
+  }
+
+  /* =========================================================
+     PÁGINA PÚBLICA
+     ========================================================= */
+  function aplicarTema() {
+    const t = (TEMAS[datos.tienda.tema] || TEMAS.rosa).c;
+    const r = document.documentElement.style;
+    ["--rosa-claro", "--rosa", "--rosa-medio", "--rosa-fuerte", "--rosa-oscuro", "--hero"].forEach((v, i) => r.setProperty(v, t[i]));
+  }
+
+  function renderTienda() {
+    const t = datos.tienda;
+    aplicarTema();
+    document.title = t.nombre + (t.eslogan ? " · " + t.eslogan : "");
+    ["#logo", "#hero-nombre", "#pie-nombre", "#pie-nombre-2"].forEach((s) => ($(s).textContent = t.nombre));
+    $("#hero-eslogan").textContent = t.eslogan || "";
+    $("#hero-mensaje").textContent = t.mensaje || "";
+    $("#pie-eslogan").textContent = t.eslogan || "";
+    $("#anio").textContent = new Date().getFullYear();
+
+    const wa = numeroWA();
+    let c = "";
+    if (wa) c += `<a class="btn btn-wa btn-chico" target="_blank" rel="noopener" href="https://wa.me/${wa}">WhatsApp</a>`;
+    if (t.instagram) {
+      const ig = String(t.instagram).replace(/^@/, "").replace(/^https?:\/\/(www\.)?instagram\.com\//, "").replace(/\/$/, "");
+      c += `<a class="btn btn-suave btn-chico" target="_blank" rel="noopener" href="https://instagram.com/${esc(ig)}">Instagram @${esc(ig)}</a>`;
+    }
+    $("#contactos").innerHTML = c;
+
+    const f = $("#wa-flotante");
+    f.hidden = !wa;
+    if (wa) f.href = `https://wa.me/${wa}?text=${encodeURIComponent("Hola " + t.nombre + " 💕, quiero más información.")}`;
+
+    const n = datos.productos.filter((p) => enOferta(p) && p.disponibilidad !== "agotado").length;
+    const cinta = $("#cinta-oferta");
+    cinta.hidden = n === 0;
+    cinta.textContent = `🌷 ¡Tenemos ${n} ${n === 1 ? "producto" : "productos"} en oferta! Aprovecha antes de que se acaben 🌷`;
+  }
+
+  function categorias() {
+    const lista = [];
+    datos.productos.forEach((p) => {
+      const c = (p.categoria || "").trim();
+      if (c && !lista.includes(c)) lista.push(c);
+    });
+    return lista;
+  }
+
+  function renderChips() {
+    const cats = ["Todas", ...categorias()];
+    if (!cats.includes(filtro.cat)) filtro.cat = "Todas";
+    $("#chips").innerHTML = cats.map((c) =>
+      `<button type="button" class="chip${c === filtro.cat ? " activo" : ""}" data-cat="${esc(c)}">${esc(c)}</button>`
+    ).join("");
+  }
+
+  function renderProductos() {
+    if (cargaFallida && !datos.productos.length) return;
+    const q = filtro.q.toLowerCase().trim();
+    const lista = datos.productos.filter((p) => {
+      if (filtro.cat !== "Todas" && (p.categoria || "").trim() !== filtro.cat) return false;
+      if (filtro.ofertas && !enOferta(p)) return false;
+      if (q && `${p.nombre} ${p.descripcion} ${p.categoria}`.toLowerCase().indexOf(q) === -1) return false;
+      return true;
+    });
+    const ag = (p) => (p.disponibilidad === "agotado" ? 1 : 0);
+    lista.sort((a, b) => {
+      if (filtro.orden === "menor") return precioFinal(a) - precioFinal(b);
+      if (filtro.orden === "mayor") return precioFinal(b) - precioFinal(a);
+      if (filtro.orden === "nombre") return String(a.nombre).localeCompare(String(b.nombre), "es");
+      return ag(a) - ag(b) || (b.destacado ? 1 : 0) - (a.destacado ? 1 : 0) || (enOferta(b) ? 1 : 0) - (enOferta(a) ? 1 : 0);
+    });
+
+    if (!lista.length) {
+      $("#grid").innerHTML = `<div class="vacio">🌸 No encontramos productos con ese filtro.</div>`;
+      return;
+    }
+    $("#grid").innerHTML = lista.map((p) => {
+      const est = ESTADOS[p.disponibilidad] || ESTADOS.disponible;
+      const agotado = p.disponibilidad === "agotado";
+      const oferta = enOferta(p);
+      return `<article class="card${agotado ? " card-agotado" : ""}">
+        <div class="card-img">${imagenHTML(p)}
+          ${oferta ? `<span class="badge-oferta">-${descuento(p)}%</span>` : ""}
+          ${p.destacado ? `<span class="badge-dest">♡ Favorito</span>` : ""}
+        </div>
+        <div class="card-body">
+          ${p.categoria ? `<span class="cat">${esc(p.categoria)}</span>` : ""}
+          <h3>${esc(p.nombre)}</h3>
+          ${p.descripcion ? `<p class="desc">${esc(p.descripcion)}</p>` : ""}
+          <div class="precios">
+            ${oferta ? `<span class="antes">${dinero(p.precio)}</span>` : ""}
+            <span class="ahora${oferta ? " oferta" : ""}">${dinero(precioFinal(p))}</span>
+          </div>
+          <span class="estado estado-${est.cls}">${est.txt}</span>
+          <button type="button" class="btn btn-rosa" data-agregar="${esc(p.id)}"${agotado ? " disabled" : ""}>
+            ${agotado ? "Agotado" : p.disponibilidad === "encargo" ? "Encargar ♡" : "Agregar a mi pedido"}
+          </button>
+        </div>
+      </article>`;
+    }).join("");
+  }
+
+  /* ---------- Carrito ---------- */
+  const buscarProducto = (id) => datos.productos.find((p) => p.id === id) || null;
+  function limpiarCarrito() {
+    Object.keys(carrito).forEach((id) => {
+      const p = buscarProducto(id);
+      if (!p || p.disponibilidad === "agotado" || carrito[id] < 1) delete carrito[id];
+    });
+  }
+  const guardarCarrito = () => lsSet(CLAVE_CARRITO, JSON.stringify(carrito));
+  function renderCarrito() {
+    if (!cargaFallida) limpiarCarrito();
+    const ids = Object.keys(carrito).filter((id) => buscarProducto(id));
+    let cant = 0, total = 0;
+    ids.forEach((id) => { cant += carrito[id]; total += carrito[id] * precioFinal(buscarProducto(id)); });
+    $("#contador").textContent = cant;
+    $("#total").textContent = dinero(total);
+    $("#enviar-pedido").disabled = !ids.length;
+    $("#vaciar").hidden = !ids.length;
+    if (!ids.length) {
+      $("#carrito-items").innerHTML = `<div class="vacio">Tu pedido está vacío 🌷<br>Agrega productos para empezar.</div>`;
+      return;
+    }
+    $("#carrito-items").innerHTML = ids.map((id) => {
+      const p = buscarProducto(id);
+      return `<div class="item">
+        <div class="item-img">${imagenHTML(p)}</div>
+        <div class="item-info"><strong>${esc(p.nombre)}</strong>
+          <small>${dinero(precioFinal(p))} c/u</small>
+          <div class="cantidad">
+            <button type="button" data-menos="${esc(id)}" aria-label="Menos">−</button>
+            <span>${carrito[id]}</span>
+            <button type="button" data-mas="${esc(id)}" aria-label="Más">+</button>
+          </div>
+        </div>
+        <button type="button" class="quitar" data-quitar="${esc(id)}" aria-label="Quitar">🗑️</button>
+      </div>`;
+    }).join("");
+  }
+  function abrirCarrito() { $("#carrito").classList.add("abierto"); $("#fondo").classList.add("abierto"); }
+  function cerrarCarrito() { $("#carrito").classList.remove("abierto"); $("#fondo").classList.remove("abierto"); }
+  function enviarPedido() {
+    const wa = numeroWA();
+    if (!wa) { alert("La tienda aún no tiene número de WhatsApp configurado."); return; }
+    let total = 0;
+    const lineas = Object.keys(carrito).filter(buscarProducto).map((id) => {
+      const p = buscarProducto(id), sub = carrito[id] * precioFinal(p);
+      total += sub;
+      return `• ${carrito[id]} x ${p.nombre}${p.disponibilidad === "encargo" ? " (por encargo)" : ""} — ${dinero(sub)}`;
+    });
+    const msg = `Hola ${datos.tienda.nombre} 💕, quiero hacer este pedido:\n\n${lineas.join("\n")}\n\n*Total: ${dinero(total)}*\n\nMi nombre: \nDirección / ciudad: `;
+    window.open(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`, "_blank");
+  }
+
+  function renderTodo() { renderTienda(); renderChips(); renderProductos(); renderCarrito(); }
+
+  async function cargarDatos() {
+    try {
+      const r = await fetch(`${ARCHIVO}?v=${Date.now()}`, { cache: "no-store" });
+      if (!r.ok) throw new Error(r.status);
+      datos = normalizar(await r.json());
+      cargaFallida = false;
+      renderTodo();
+    } catch (e) {
+      cargaFallida = true;
+      renderTodo();
+      const local = location.protocol === "file:";
+      $("#grid").innerHTML = `<div class="vacio">😿 No pudimos cargar los productos.
+        <small>${local
+          ? "Abriste el archivo directamente desde tu computador, y los navegadores no permiten leer productos.json así. Súbelo a tu hosting junto con productos.json, o pruébalo con un servidor local (por ejemplo la extensión “Live Server” de VS Code)."
+          : "Verifica que el archivo productos.json esté subido en la misma carpeta que index.html."}</small></div>`;
+    }
+  }
+
+  /* ---------- Eventos de la página ---------- */
+  $("#chips").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-cat]");
+    if (!b) return;
+    filtro.cat = b.getAttribute("data-cat");
+    renderChips(); renderProductos();
+  });
+  $("#buscar").addEventListener("input", (e) => { filtro.q = e.target.value; renderProductos(); });
+  $("#ordenar").addEventListener("change", (e) => { filtro.orden = e.target.value; renderProductos(); });
+  $("#solo-ofertas").addEventListener("change", (e) => { filtro.ofertas = e.target.checked; renderProductos(); });
+  $("#grid").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-agregar]");
+    if (!b) return;
+    const id = b.getAttribute("data-agregar");
+    carrito[id] = (carrito[id] || 0) + 1;
+    guardarCarrito(); renderCarrito();
+    toast("Agregado a tu pedido 💗");
+  });
+  $("#carrito-items").addEventListener("click", (e) => {
+    const t = e.target.closest("button");
+    if (!t) return;
+    let id;
+    if ((id = t.getAttribute("data-mas"))) carrito[id]++;
+    else if ((id = t.getAttribute("data-menos"))) { carrito[id]--; if (carrito[id] < 1) delete carrito[id]; }
+    else if ((id = t.getAttribute("data-quitar"))) delete carrito[id];
+    guardarCarrito(); renderCarrito();
+  });
+  $("#abrir-carrito").addEventListener("click", abrirCarrito);
+  $("#cerrar-carrito").addEventListener("click", cerrarCarrito);
+  $("#fondo").addEventListener("click", cerrarCarrito);
+  $("#enviar-pedido").addEventListener("click", enviarPedido);
+  $("#vaciar").addEventListener("click", () => {
+    if (confirm("¿Vaciar tu pedido?")) { carrito = {}; guardarCarrito(); renderCarrito(); }
+  });
+
+  /* =========================================================
+     CIFRADO (la clave protege el token de GitHub)
+     ========================================================= */
+  const te = new TextEncoder(), td = new TextDecoder();
+  function aB64(bytes) {
+    let s = "";
+    for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+    return btoa(s);
+  }
+  function deB64(b) {
+    const s = atob(String(b).replace(/\s/g, ""));
+    const u = new Uint8Array(s.length);
+    for (let i = 0; i < s.length; i++) u[i] = s.charCodeAt(i);
+    return u;
+  }
+  async function llave(clave, salt) {
+    const base = await crypto.subtle.importKey("raw", te.encode(clave), "PBKDF2", false, ["deriveKey"]);
+    return crypto.subtle.deriveKey(
+      { name: "PBKDF2", salt, iterations: 250000, hash: "SHA-256" },
+      base, { name: "AES-GCM", length: 256 }, false, ["encrypt", "decrypt"]
+    );
+  }
+  async function cifrar(obj, clave) {
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const k = await llave(clave, salt);
+    const c = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, k, te.encode(JSON.stringify(obj)));
+    return { v: 1, salt: aB64(salt), iv: aB64(iv), datos: aB64(new Uint8Array(c)) };
+  }
+  async function descifrar(a, clave) {
+    const k = await llave(clave, deB64(a.salt));
+    const p = await crypto.subtle.decrypt({ name: "AES-GCM", iv: deB64(a.iv) }, k, deB64(a.datos));
+    return JSON.parse(td.decode(p));
+  }
+
+  /* =========================================================
+     GITHUB (guardado automático de productos.json)
+     ========================================================= */
+  async function gh(conf, metodo, ruta, cuerpo, crudo) {
+    const headers = {
+      Authorization: "Bearer " + conf.token,
+      Accept: crudo ? "application/vnd.github.raw+json" : "application/vnd.github+json"
+    };
+    if (cuerpo) headers["Content-Type"] = "application/json";
+    let r;
+    try {
+      r = await fetch(`https://api.github.com/repos/${encodeURIComponent(conf.owner)}/${encodeURIComponent(conf.repo)}${ruta}`, {
+        method: metodo, headers, body: cuerpo ? JSON.stringify(cuerpo) : undefined, cache: "no-store"
+      });
+    } catch (e) {
+      const er = new Error("red"); er.status = 0; throw er;
+    }
+    if (!r.ok) { const er = new Error("GitHub " + r.status); er.status = r.status; throw er; }
+    return crudo ? r.text() : r.json();
+  }
+  const rutaArchivo = () => `/contents/${ARCHIVO}?ref=${encodeURIComponent(sesion.branch)}`;
+
+  async function leerRemoto() {
+    try {
+      const info = await gh(sesion, "GET", rutaArchivo());
+      sesion.sha = info.sha;
+      const txt = info.encoding === "base64" && info.content
+        ? td.decode(deB64(info.content))
+        : await gh(sesion, "GET", rutaArchivo(), null, true);
+      return JSON.parse(txt);
+    } catch (e) {
+      if (e.status === 404) { sesion.sha = null; return null; }
+      throw e;
+    }
+  }
+  async function refrescarSha() {
+    try { sesion.sha = (await gh(sesion, "GET", rutaArchivo())).sha; }
+    catch (e) { if (e.status === 404) sesion.sha = null; else throw e; }
+  }
+  async function subirJSON() {
+    const cuerpo = {
+      message: "Actualizar productos (" + new Date().toLocaleString("es-CO") + ")",
+      content: aB64(te.encode(JSON.stringify(datos, null, 1))),
+      branch: sesion.branch
+    };
+    for (let intento = 0; intento < 2; intento++) {
+      if (sesion.sha) cuerpo.sha = sesion.sha; else delete cuerpo.sha;
+      try {
+        const r = await gh(sesion, "PUT", `/contents/${ARCHIVO}`, cuerpo);
+        sesion.sha = r.content.sha;
+        return;
+      } catch (e) {
+        if (intento === 0 && (e.status === 409 || e.status === 422)) { await refrescarSha(); continue; }
+        throw e;
+      }
+    }
+  }
+  async function subirImagen(dataURL, id) {
+    const ruta = `imagenes/${id}-${Date.now().toString(36)}.jpg`;
+    await gh(sesion, "PUT", `/contents/${ruta}`, { message: "Subir imagen", content: dataURL.split(",")[1], branch: sesion.branch });
+    cacheImg[ruta] = dataURL;
+    return ruta;
+  }
+  function mensajeError(e) {
+    switch (e && e.status) {
+      case 0: return "Sin conexión a internet.";
+      case 401: return "El token de GitHub no es válido o ya venció. Actualízalo en 🔐 Seguridad.";
+      case 403: return "El token no tiene permiso para guardar en el repositorio.";
+      case 404: return "No se encontró el repositorio o la rama. Revisa 🔐 Seguridad.";
+      default: return "No se pudo guardar (error " + (e && e.status) + ").";
+    }
+  }
+
+  /* ---------- Cola de guardado automático ---------- */
+  let timerGuardar = null, guardando = false, otraVez = false;
+  function estadoGuardado(tipo, msg) {
+    const el = $("#estado-guardado");
+    el.classList.toggle("error", tipo === "error");
+    const textos = {
+      listo: "☁️ Conectado · los cambios se guardan solos",
+      pendiente: "✏️ Cambios por guardar…",
+      guardando: "⏳ Guardando…",
+      ok: "✓ Guardado · se verá en la página en 1–2 min",
+      manual: "💾 Modo manual · <button type=\"button\" data-accion=\"descargar-json\">Descargar productos.json</button>",
+      error: "⚠️ " + esc(msg || "") + ' <button type="button" data-accion="reintentar">Reintentar</button>'
+    };
+    el.innerHTML = textos[tipo] || "";
+  }
+  function guardar() {
+    if (!sesion) return;
+    if (sesion.modo !== "github") {
+      lsSet(CLAVE_BORRADOR, JSON.stringify(datos));
+      estadoGuardado("manual");
+      return;
+    }
+    estadoGuardado("pendiente");
+    clearTimeout(timerGuardar);
+    timerGuardar = setTimeout(ejecutarGuardado, 1200);
+  }
+  async function ejecutarGuardado() {
+    timerGuardar = null;
+    if (guardando) { otraVez = true; return; }
+    guardando = true;
+    estadoGuardado("guardando");
+    try { await subirJSON(); estadoGuardado("ok"); }
+    catch (e) { estadoGuardado("error", mensajeError(e)); }
+    guardando = false;
+    if (otraVez) { otraVez = false; ejecutarGuardado(); }
+  }
+  const hayPendientes = () => !!timerGuardar || guardando;
+  window.addEventListener("beforeunload", (e) => {
+    if (sesion && hayPendientes()) { e.preventDefault(); e.returnValue = ""; }
+  });
+
+  function descargarJSON() {
+    const blob = new Blob([JSON.stringify(datos, null, 1)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = ARCHIVO;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+    toast("productos.json descargado ✓ Súbelo a tu hosting");
+  }
+
+  /* =========================================================
+     ACCESO: doble clic en el nombre de la papelería
+     ========================================================= */
+  function dobleToque(el, fn) {
+    let ultimo = 0;
+    el.addEventListener("click", () => {
+      const ahora = Date.now();
+      if (ahora - ultimo < 450) { ultimo = 0; fn(); } else ultimo = ahora;
+    });
+  }
+  ["#logo", "#hero-nombre", "#pie-nombre"].forEach((s) => dobleToque($(s), pedirAcceso));
+
+  function pedirAcceso() {
+    if (sesion) { abrirAdmin(); return; }
+    if (!window.crypto || !crypto.subtle) {
+      alert("Para entrar al panel la página debe abrirse con https:// (tu hosting gratuito ya lo tiene).");
+      return;
+    }
+    $("#modal-clave").classList.add("abierto");
+    document.body.style.overflow = "hidden";
+    renderClave();
+  }
+  function cerrarClave() {
+    $("#modal-clave").classList.remove("abierto");
+    $("#clave-contenido").innerHTML = "";
+    if (!$("#admin").classList.contains("abierto")) document.body.style.overflow = "";
+  }
+  function renderClave() {
+    const caja = $("#clave-caja");
+    if (datos.acceso) {
+      caja.classList.add("chica");
+      $("#clave-contenido").innerHTML = `
+        <form class="login" id="form-login" autocomplete="off">
+          <div class="candado">🔐</div>
+          <h2>Acceso privado</h2>
+          <p>Ingresa tu clave para administrar la papelería.</p>
+          <div class="campo"><div class="clave-caja">
+            <input type="password" id="l-clave" placeholder="Tu clave" autocomplete="current-password" required>
+            <button type="button" class="ojo" data-ojo="l-clave" aria-label="Mostrar clave">👁️</button>
+          </div></div>
+          <p class="error" id="l-error"></p>
+          <div class="barra-acciones" style="justify-content:stretch">
+            <button type="button" class="btn btn-borde" data-accion="cerrar-clave" style="flex:1">Cancelar</button>
+            <button type="submit" class="btn btn-rosa" id="l-btn" style="flex:1">Entrar</button>
+          </div>
+        </form>`;
+      setTimeout(() => $("#l-clave") && $("#l-clave").focus(), 60);
+    } else {
+      caja.classList.remove("chica");
+      $("#clave-contenido").innerHTML = `<h2 class="titulo-modal">🌸 Configuración inicial</h2>` + vistaSeguridad(true);
+    }
+  }
+
+  let intentos = 0, bloqueoHasta = 0;
+  async function entrar() {
+    const err = $("#l-error"), btn = $("#l-btn"), input = $("#l-clave");
+    const clave = input.value;
+    if (Date.now() < bloqueoHasta) {
+      err.textContent = "Demasiados intentos. Espera " + Math.ceil((bloqueoHasta - Date.now()) / 1000) + " segundos.";
+      return;
+    }
+    btn.disabled = true; btn.textContent = "Verificando…"; err.textContent = "";
+    let conf;
+    try {
+      conf = await descifrar(datos.acceso, clave);
+    } catch (e) {
+      intentos++;
+      if (intentos >= 5) { bloqueoHasta = Date.now() + 30000; intentos = 0; }
+      err.textContent = "Clave incorrecta";
+      const caja = $("#clave-caja");
+      caja.classList.remove("sacudir"); void caja.offsetWidth; caja.classList.add("sacudir");
+      btn.disabled = false; btn.textContent = "Entrar";
+      input.select();
+      return;
+    }
+    intentos = 0;
+    sesion = Object.assign({ clave, sha: null }, conf);
+    let errorConexion = null;
+    if (sesion.modo === "github") {
+      btn.textContent = "Conectando…";
+      try {
+        const remoto = await leerRemoto();
+        if (remoto) { datos = normalizar(remoto); cargaFallida = false; renderTodo(); }
+      } catch (e) { errorConexion = e; }
+    } else {
+      const b = lsGet(CLAVE_BORRADOR);
+      if (b && b !== JSON.stringify(datos) && confirm("Tienes cambios guardados en este navegador que aún no has subido. ¿Quieres recuperarlos?")) {
+        try { datos = normalizar(JSON.parse(b)); renderTodo(); } catch (e) {}
+      }
+    }
+    cerrarClave();
+    abrirAdmin();
+    if (errorConexion) estadoGuardado("error", mensajeError(errorConexion));
+    else estadoGuardado(sesion.modo === "github" ? "listo" : "manual");
+    toast("¡Bienvenida/o! 🌸");
+  }
+
+  /* =========================================================
+     PANEL SUPERADMIN
+     ========================================================= */
+  let vista = "lista";
+  let editando = null;
+  let fotoForm = "";
+  let busquedaAdmin = "";
+
+  function abrirAdmin() {
+    $("#admin").classList.add("abierto");
+    document.body.style.overflow = "hidden";
+    renderAdmin();
+  }
+  function cerrarAdmin() {
+    $("#admin").classList.remove("abierto");
+    document.body.style.overflow = "";
+  }
+  function cerrarSesion() {
+    if (hayPendientes() && !confirm("Todavía se están guardando cambios. ¿Salir de todas formas?")) return;
+    sesion = null;
+    cerrarAdmin();
+    $("#admin-contenido").innerHTML = "";
+    toast("Sesión cerrada 🔒");
+  }
+
+  function renderAdmin() {
+    const t = vista === "form" ? "lista" : vista;
+    $$(".tab").forEach((b) => b.classList.toggle("activo", b.getAttribute("data-tab") === t));
+    const c = $("#admin-contenido");
+    if (vista === "lista") { c.innerHTML = vistaLista(); renderFilas(); }
+    else if (vista === "form") { c.innerHTML = vistaForm(); pintarFoto(); }
+    else if (vista === "tienda") c.innerHTML = vistaTienda();
+    else c.innerHTML = vistaSeguridad(false);
+  }
+
+  /* ---------- Lista de productos ---------- */
+  function vistaLista() {
+    return `
+      <div class="admin-top">
+        <input class="buscar" id="a-buscar" type="search" placeholder="🔍 Buscar producto…" value="${esc(busquedaAdmin)}">
+        <button type="button" class="btn btn-rosa" data-accion="nuevo">＋ Nuevo producto</button>
+      </div>
+      <p class="ayuda">💡 Cambia la disponibilidad directo desde la lista. Todo se guarda automáticamente.</p>
+      <div id="a-filas"></div>`;
+  }
+  function opcionesEstado(sel) {
+    return Object.keys(ESTADOS).map((k) => `<option value="${k}"${k === sel ? " selected" : ""}>${ESTADOS[k].txt}</option>`).join("");
+  }
+  function renderFilas() {
+    const q = busquedaAdmin.toLowerCase().trim();
+    const total = datos.productos.length;
+    const filas = datos.productos
+      .map((p, i) => ({ p, i }))
+      .filter(({ p }) => !q || `${p.nombre} ${p.categoria}`.toLowerCase().includes(q));
+    if (!total) { $("#a-filas").innerHTML = `<div class="vacio">Aún no tienes productos. ¡Agrega el primero! 📚</div>`; return; }
+    if (!filas.length) { $("#a-filas").innerHTML = `<div class="vacio">No hay productos con esa búsqueda.</div>`; return; }
+    $("#a-filas").innerHTML = `<p class="ayuda" style="margin-top:0">${total} productos en total</p>` + filas.map(({ p, i }) => `
+      <div class="fila-admin">
+        <div class="item-img">${imagenHTML(p)}</div>
+        <div class="item-info">
+          <strong>${esc(p.nombre)}</strong>
+          <small>${enOferta(p) ? `<s>${dinero(p.precio)}</s> <b style="color:var(--rosa-fuerte)">${dinero(p.precioOferta)} 🏷️ oferta</b>` : dinero(p.precio)}${p.categoria ? " · " + esc(p.categoria) : ""}</small>
+        </div>
+        <div class="acciones">
+          <select class="mini-select" data-estado="${i}" aria-label="Disponibilidad">${opcionesEstado(p.disponibilidad)}</select>
+          <button type="button" class="btn btn-borde btn-chico" data-subir="${i}" title="Subir"${i === 0 ? " disabled" : ""}>↑</button>
+          <button type="button" class="btn btn-borde btn-chico" data-bajar="${i}" title="Bajar"${i === total - 1 ? " disabled" : ""}>↓</button>
+          <button type="button" class="btn btn-suave btn-chico" data-editar="${i}">✏️ Editar</button>
+          <button type="button" class="btn btn-borde btn-chico" data-duplicar="${i}">Duplicar</button>
+          <button type="button" class="btn btn-peligro btn-chico" data-borrar="${i}">Eliminar</button>
+        </div>
+      </div>`).join("");
+  }
+
+  /* ---------- Formulario de producto ---------- */
+  function vistaForm() {
+    const p = editando;
+    const nuevo = !datos.productos.some((x) => x.id === p.id);
+    const cats = categorias().map((c) => `<option value="${esc(c)}">`).join("");
+    return `
+      <h3 class="titulo-modal">${nuevo ? "Nuevo producto" : "Editar producto"}</h3>
+      <form class="form" id="form-producto" autocomplete="off">
+        <div class="campo ancho"><label>Foto del producto</label>
+          <div class="foto-zona">
+            <div class="foto-prev" id="foto-prev"></div>
+            <div style="display:grid;gap:8px;flex:1;min-width:200px">
+              <label class="btn btn-suave" style="justify-self:start">📷 Elegir foto<input type="file" id="f-archivo" accept="image/*" hidden></label>
+              <input type="url" id="f-url" placeholder="…o pega el enlace de una imagen" value="${/^(data:|imagenes\/)/.test(fotoForm) ? "" : esc(fotoForm)}" style="border:1.5px solid var(--borde);border-radius:14px;padding:9px 12px">
+              <button type="button" class="btn btn-borde btn-chico" data-accion="quitar-foto" style="justify-self:start">Quitar foto</button>
+            </div>
+          </div>
+        </div>
+        <div class="campo ancho"><label for="f-nombre">Nombre *</label><input type="text" id="f-nombre" required value="${esc(p.nombre)}" placeholder="Ej: Cuaderno cosido 50 hojas"></div>
+        <div class="campo"><label for="f-precio">Precio *</label><input type="number" id="f-precio" min="0" step="any" required value="${esc(p.precio)}" placeholder="Ej: 12000"></div>
+        <div class="campo"><label for="f-oferta">Precio en oferta</label><input type="number" id="f-oferta" min="0" step="any" value="${esc(p.precioOferta)}" placeholder="Vacío = sin oferta"><small>Si lo llenas, se muestra el descuento automáticamente.</small></div>
+        <div class="campo"><label for="f-cat">Categoría</label><input type="text" id="f-cat" list="lista-cats" placeholder="Ej: Cuadernos" value="${esc(p.categoria)}"><datalist id="lista-cats">${cats}</datalist></div>
+        <div class="campo"><label for="f-estado">Disponibilidad</label><select id="f-estado">${opcionesEstado(p.disponibilidad)}</select></div>
+        <div class="campo ancho"><label for="f-desc">Descripción</label><textarea id="f-desc" placeholder="Cuéntale a tus clientes cómo es el producto">${esc(p.descripcion)}</textarea></div>
+        <div class="campo"><label for="f-emoji">Ícono (si no tiene foto)</label><input type="text" id="f-emoji" maxlength="4" value="${esc(p.emoji || "📒")}"></div>
+        <div class="campo" style="justify-content:flex-end"><label class="check"><input type="checkbox" id="f-dest"${p.destacado ? " checked" : ""}> Marcar como favorito ♡</label></div>
+        <div class="campo ancho"><div class="barra-acciones">
+          <button type="button" class="btn btn-borde" data-accion="cancelar">Cancelar</button>
+          <button type="submit" class="btn btn-rosa" id="f-guardar">💾 Guardar producto</button>
+        </div></div>
+      </form>`;
+  }
+  function pintarFoto() {
+    const prev = $("#foto-prev");
+    if (!prev) return;
+    const emoji = $("#f-emoji") ? $("#f-emoji").value : editando.emoji;
+    prev.innerHTML = imagenHTML({ id: editando.id, imagen: fotoForm, emoji, nombre: "" });
+  }
+  function reducirImagen(file) {
+    return new Promise((ok, mal) => {
+      const lector = new FileReader();
+      lector.onload = () => {
+        const img = new Image();
+        img.onload = () => {
+          const max = 800;
+          let w = img.width, h = img.height;
+          if (w > max || h > max) { const r = Math.min(max / w, max / h); w = Math.round(w * r); h = Math.round(h * r); }
+          const cv = document.createElement("canvas");
+          cv.width = w; cv.height = h;
+          const ctx = cv.getContext("2d");
+          ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, w, h);
+          ctx.drawImage(img, 0, 0, w, h);
+          ok(cv.toDataURL("image/jpeg", 0.8));
+        };
+        img.onerror = mal;
+        img.src = lector.result;
+      };
+      lector.onerror = mal;
+      lector.readAsDataURL(file);
+    });
+  }
+  async function guardarProducto() {
+    const precio = Number($("#f-precio").value);
+    const ofertaTxt = $("#f-oferta").value.trim();
+    const oferta = ofertaTxt === "" ? "" : Number(ofertaTxt);
+    if (oferta !== "" && oferta >= precio) { alert("El precio en oferta debe ser menor que el precio normal."); return; }
+    const btn = $("#f-guardar");
+    btn.disabled = true;
+    let imagen = fotoForm;
+    if (imagen.startsWith("data:") && sesion.modo === "github") {
+      btn.textContent = "Subiendo foto…";
+      try { imagen = await subirImagen(imagen, editando.id); }
+      catch (e) {
+        alert("No se pudo subir la foto: " + mensajeError(e));
+        btn.disabled = false; btn.textContent = "💾 Guardar producto";
+        return;
+      }
+    }
+    const p = {
+      id: editando.id,
+      nombre: $("#f-nombre").value.trim(),
+      categoria: $("#f-cat").value.trim(),
+      descripcion: $("#f-desc").value.trim(),
+      precio,
+      precioOferta: oferta,
+      disponibilidad: $("#f-estado").value,
+      destacado: $("#f-dest").checked,
+      emoji: $("#f-emoji").value.trim() || "📒",
+      imagen
+    };
+    const idx = datos.productos.findIndex((x) => x.id === p.id);
+    if (idx >= 0) datos.productos[idx] = p; else datos.productos.unshift(p);
+    guardar(); renderTodo();
+    vista = "lista"; renderAdmin();
+    toast("Producto guardado ✓");
+  }
+
+  /* ---------- Datos de la papelería ---------- */
+  function vistaTienda() {
+    const t = datos.tienda;
+    const colores = Object.keys(TEMAS).map((k) => `
+      <label class="color"><input type="radio" name="tema" value="${k}"${k === (t.tema || "rosa") ? " checked" : ""}>
+        <span style="background:${TEMAS[k].c[5]}"></span>${TEMAS[k].nombre}</label>`).join("");
+    return `
+      <form class="form" id="form-tienda" autocomplete="off">
+        <div class="campo"><label for="t-nombre">Nombre de la papelería</label><input type="text" id="t-nombre" required value="${esc(t.nombre)}"></div>
+        <div class="campo"><label for="t-eslogan">Eslogan</label><input type="text" id="t-eslogan" value="${esc(t.eslogan)}"></div>
+        <div class="campo ancho"><label for="t-mensaje">Mensaje de bienvenida</label><textarea id="t-mensaje">${esc(t.mensaje)}</textarea></div>
+        <div class="campo"><label for="t-wa">WhatsApp para pedidos</label><input type="tel" id="t-wa" value="${esc(t.whatsapp)}" placeholder="573001234567"><small>Con el indicativo del país (57 para Colombia), sin espacios ni +.</small></div>
+        <div class="campo"><label for="t-ig">Instagram</label><input type="text" id="t-ig" placeholder="@mipapeleria" value="${esc(t.instagram)}"></div>
+        <div class="campo"><label for="t-moneda">Moneda</label><select id="t-moneda">
+          ${["COP", "USD", "MXN", "PEN", "CLP", "EUR"].map((m) => `<option${m === t.moneda ? " selected" : ""}>${m}</option>`).join("")}
+        </select></div>
+        <div class="campo ancho"><label>Color de la página</label><div class="colores">${colores}</div></div>
+        <div class="campo ancho"><div class="barra-acciones"><button type="submit" class="btn btn-rosa">💾 Guardar cambios</button></div></div>
+      </form>`;
+  }
+  function guardarTienda() {
+    datos.tienda = {
+      nombre: $("#t-nombre").value.trim() || "JyJ Papelería",
+      eslogan: $("#t-eslogan").value.trim(),
+      mensaje: $("#t-mensaje").value.trim(),
+      whatsapp: $("#t-wa").value.replace(/\D/g, ""),
+      instagram: $("#t-ig").value.trim(),
+      moneda: $("#t-moneda").value,
+      tema: ($("#form-tienda input[name=tema]:checked") || {}).value || "rosa"
+    };
+    guardar(); renderTodo();
+    toast("Datos guardados ✓");
+  }
+
+  /* ---------- Seguridad / configuración inicial ---------- */
+  function vistaSeguridad(inicial) {
+    const gh = sesion && sesion.modo === "github" ? sesion : null;
+    const modo = inicial ? "github" : sesion.modo;
+    return `
+      <form class="form" id="form-seguridad" data-inicial="${inicial ? 1 : 0}" autocomplete="off">
+        ${inicial ? `<div class="campo ancho nota">Crea la clave con la que vas a entrar al panel. Solo quien la tenga podrá cambiar productos y precios.</div>` : ""}
+        <div class="campo"><label for="s-clave">${inicial ? "Crea tu clave" : "Nueva clave"}</label>
+          <div class="clave-caja"><input type="password" id="s-clave" autocomplete="new-password" placeholder="${inicial ? "Mínimo 8 caracteres" : "Vacío = no cambiarla"}">
+          <button type="button" class="ojo" data-ojo="s-clave" aria-label="Mostrar clave">👁️</button></div></div>
+        <div class="campo"><label for="s-clave2">Repite la clave</label><input type="password" id="s-clave2" autocomplete="new-password"></div>
+
+        <div class="campo ancho"><label>¿Cómo se guardan los cambios?</label>
+          <label class="opcion"><input type="radio" name="modo" value="github"${modo === "github" ? " checked" : ""}>
+            <span><b>Automático con GitHub</b> (recomendado)<br><small>Cada cambio se guarda solo en productos.json y la página se actualiza en 1–2 minutos.</small></span></label>
+          <label class="opcion"><input type="radio" name="modo" value="manual"${modo === "manual" ? " checked" : ""}>
+            <span><b>Manual</b><br><small>Descargas productos.json y lo subes tú a tu hosting cada vez que hagas cambios.</small></span></label>
+        </div>
+
+        <div class="campo ancho" id="s-github"${modo === "github" ? "" : " hidden"}>
+          <div class="form">
+            <div class="campo"><label for="s-repo">Repositorio de GitHub</label>
+              <input type="text" id="s-repo" placeholder="usuario/papeleria" value="${gh ? esc(gh.owner + "/" + gh.repo) : ""}">
+              <small>Donde están index.html y productos.json.</small></div>
+            <div class="campo"><label for="s-rama">Rama</label><input type="text" id="s-rama" value="${gh ? esc(gh.branch) : "main"}"></div>
+            <div class="campo ancho"><label for="s-token">Token de GitHub</label>
+              <div class="clave-caja"><input type="password" id="s-token" placeholder="${gh ? "Vacío = mantener el token actual" : "github_pat_…"}">
+              <button type="button" class="ojo" data-ojo="s-token" aria-label="Mostrar token">👁️</button></div>
+              <small>Queda guardado cifrado con tu clave: nadie puede usarlo sin ella.</small></div>
+            <div class="campo ancho"><details><summary>¿Cómo creo el token? (2 minutos)</summary><ol>
+              <li>Entra a <b>github.com</b> → tu foto → <b>Settings</b> → <b>Developer settings</b>.</li>
+              <li><b>Personal access tokens</b> → <b>Fine-grained tokens</b> → <b>Generate new token</b>.</li>
+              <li>Ponle un nombre (ej. "Papelería") y la fecha de vencimiento más larga.</li>
+              <li>En <b>Repository access</b> elige <b>Only select repositories</b> y escoge tu repositorio.</li>
+              <li>En <b>Permissions → Contents</b> elige <b>Read and write</b>.</li>
+              <li>Clic en <b>Generate token</b>, cópialo y pégalo aquí.</li>
+            </ol></details></div>
+          </div>
+        </div>
+        <p class="error campo ancho" id="s-error"></p>
+        <div class="campo ancho"><div class="barra-acciones">
+          ${inicial ? `<button type="button" class="btn btn-borde" data-accion="cerrar-clave">Cancelar</button>` : ""}
+          <button type="submit" class="btn btn-rosa" id="s-btn">${inicial ? "Crear acceso" : "💾 Guardar seguridad"}</button>
+        </div></div>
+      </form>`;
+  }
+
+  async function guardarSeguridad(form) {
+    const inicial = form.getAttribute("data-inicial") === "1";
+    const err = $("#s-error"), btn = $("#s-btn");
+    const clave = $("#s-clave").value, clave2 = $("#s-clave2").value;
+    const modo = form.querySelector("input[name=modo]:checked").value;
+    err.textContent = "";
+    if (inicial || clave) {
+      if (clave.length < 8) { err.textContent = "La clave debe tener mínimo 8 caracteres."; return; }
+      if (clave !== clave2) { err.textContent = "Las claves no coinciden."; return; }
+    }
+    const nuevaClave = clave || sesion.clave;
+    let conf = { modo };
+    if (modo === "github") {
+      const txt = $("#s-repo").value.trim().replace(/^https?:\/\/github\.com\//i, "").replace(/\.git$/, "").replace(/\/+$/, "");
+      const partes = txt.split("/");
+      if (partes.length !== 2 || !partes[0] || !partes[1]) { err.textContent = "Escribe el repositorio así: usuario/nombre-del-repositorio"; return; }
+      const token = $("#s-token").value.trim() || (sesion && sesion.modo === "github" ? sesion.token : "");
+      if (!token) { err.textContent = "Pega tu token de GitHub."; return; }
+      conf = { modo, owner: partes[0], repo: partes[1], branch: $("#s-rama").value.trim() || "main", token };
+    }
+
+    btn.disabled = true;
+    const textoBtn = btn.textContent;
+    btn.textContent = "Guardando…";
+    const sesionAnterior = sesion, accesoAnterior = datos.acceso;
+    try {
+      if (modo === "github") {
+        btn.textContent = "Probando conexión…";
+        const info = await gh(conf, "GET", "");
+        if (info.permissions && !info.permissions.push) { const e = new Error(); e.status = 403; throw e; }
+      }
+      sesion = Object.assign({ clave: nuevaClave, sha: null }, conf);
+      if (modo === "github") {
+        const remoto = await leerRemoto();
+        if (remoto && inicial) { datos = normalizar(remoto); }
+      }
+      datos.acceso = await cifrar(conf, nuevaClave);
+      if (modo === "github") {
+        btn.textContent = "Guardando…";
+        await subirJSON();
+      } else {
+        lsSet(CLAVE_BORRADOR, JSON.stringify(datos));
+        descargarJSON();
+      }
+    } catch (e) {
+      sesion = sesionAnterior;
+      datos.acceso = accesoAnterior;
+      err.textContent = e && "status" in e ? mensajeError(e) : "Algo salió mal. Intenta de nuevo.";
+      btn.disabled = false; btn.textContent = textoBtn;
+      return;
+    }
+    renderTodo();
+    if (inicial) {
+      cerrarClave();
+      vista = "lista";
+      abrirAdmin();
+      if (modo === "github") { estadoGuardado("ok"); toast("¡Listo! Tu acceso quedó creado 🌸"); }
+      else { estadoGuardado("manual"); alert("Se descargó productos.json con tu clave. Súbelo a tu hosting para que el acceso quede activo."); }
+    } else {
+      renderAdmin();
+      if (modo === "github") { estadoGuardado("ok"); toast("Seguridad actualizada ✓"); }
+      else estadoGuardado("manual");
+    }
+  }
+
+  /* ---------- Eventos del panel y modales ---------- */
+  $$(".tab").forEach((b) => b.addEventListener("click", () => { vista = b.getAttribute("data-tab"); renderAdmin(); }));
+  $("#cerrar-admin").addEventListener("click", cerrarAdmin);
+  $("#salir").addEventListener("click", cerrarSesion);
+  $("#modal-clave").addEventListener("click", (e) => { if (e.target.id === "modal-clave") cerrarClave(); });
+
+  document.addEventListener("submit", (e) => {
+    const id = e.target.id;
+    if (!["form-login", "form-producto", "form-tienda", "form-seguridad"].includes(id)) return;
+    e.preventDefault();
+    if (id === "form-login") entrar();
+    else if (id === "form-producto") guardarProducto();
+    else if (id === "form-tienda") guardarTienda();
+    else guardarSeguridad(e.target);
+  });
+
+  document.addEventListener("click", (e) => {
+    const ojo = e.target.closest("[data-ojo]");
+    if (ojo) {
+      const inp = document.getElementById(ojo.getAttribute("data-ojo"));
+      inp.type = inp.type === "password" ? "text" : "password";
+      return;
+    }
+    const b = e.target.closest("button");
+    if (!b || !b.closest("#admin, #modal-clave")) return;
+    const a = b.getAttribute("data-accion");
+    let i;
+    if (a === "cerrar-clave") cerrarClave();
+    else if (a === "descargar-json") descargarJSON();
+    else if (a === "reintentar") ejecutarGuardado();
+    else if (a === "nuevo") {
+      editando = { id: "p" + Date.now().toString(36), nombre: "", categoria: "", descripcion: "", precio: "", precioOferta: "", disponibilidad: "disponible", destacado: false, emoji: "📒", imagen: "" };
+      fotoForm = ""; vista = "form"; renderAdmin();
+    }
+    else if (a === "cancelar") { vista = "lista"; renderAdmin(); }
+    else if (a === "quitar-foto") { fotoForm = ""; $("#f-url").value = ""; $("#f-archivo").value = ""; pintarFoto(); }
+    else if ((i = b.getAttribute("data-editar")) !== null) {
+      editando = copiar(datos.productos[+i]); fotoForm = editando.imagen || ""; vista = "form"; renderAdmin();
+    }
+    else if ((i = b.getAttribute("data-duplicar")) !== null) {
+      const d = copiar(datos.productos[+i]);
+      d.id = "p" + Date.now().toString(36); d.nombre += " (copia)";
+      datos.productos.splice(+i + 1, 0, d);
+      guardar(); renderTodo(); renderFilas();
+    }
+    else if ((i = b.getAttribute("data-borrar")) !== null) {
+      if (confirm(`¿Eliminar "${datos.productos[+i].nombre}"?`)) {
+        datos.productos.splice(+i, 1); guardar(); renderTodo(); renderFilas();
+        toast("Producto eliminado");
+      }
+    }
+    else if ((i = b.getAttribute("data-subir") ?? b.getAttribute("data-bajar")) !== null) {
+      i = +i;
+      const j = b.hasAttribute("data-subir") ? i - 1 : i + 1;
+      [datos.productos[i], datos.productos[j]] = [datos.productos[j], datos.productos[i]];
+      guardar(); renderTodo(); renderFilas();
+    }
+  });
+
+  document.addEventListener("input", (e) => {
+    const id = e.target.id;
+    if (id === "a-buscar") { busquedaAdmin = e.target.value; renderFilas(); }
+    else if (id === "f-url") { fotoForm = e.target.value.trim(); pintarFoto(); }
+    else if (id === "f-emoji") pintarFoto();
+  });
+
+  document.addEventListener("change", async (e) => {
+    const t = e.target;
+    if (t.matches("[data-estado]")) {
+      datos.productos[+t.getAttribute("data-estado")].disponibilidad = t.value;
+      guardar(); renderTodo();
+      toast("Disponibilidad actualizada ✓");
+    } else if (t.id === "f-archivo" && t.files[0]) {
+      try { fotoForm = await reducirImagen(t.files[0]); $("#f-url").value = ""; pintarFoto(); }
+      catch (err) { alert("No se pudo leer esa imagen."); }
+    } else if (t.name === "modo") {
+      $("#s-github").hidden = t.value !== "github";
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    if ($("#modal-clave").classList.contains("abierto")) cerrarClave();
+    else if ($("#admin").classList.contains("abierto")) cerrarAdmin();
+    else cerrarCarrito();
+  });
+
+  /* ---------- Inicio ---------- */
+  renderCarrito();
+  cargarDatos();
+})();
+</script>
+</body>
+</html>

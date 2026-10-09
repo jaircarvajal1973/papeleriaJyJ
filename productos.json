@@ -1,0 +1,22 @@
+{
+ "tienda": {
+  "nombre": "JyJ Papelería",
+  "eslogan": "Todo para escribir, crear y organizar con estilo",
+  "mensaje": "Cuadernos, agendas, colores y detalles bonitos para el colegio, la oficina y tus proyectos. Haz tu pedido por WhatsApp 📚",
+  "whatsapp": "573001234567",
+  "instagram": "",
+  "moneda": "COP",
+  "tema": "rosa"
+ },
+ "productos": [
+  {"id":"p1","nombre":"Cuaderno argollado pastel 100 hojas","categoria":"Cuadernos","descripcion":"Tapa dura en tonos pastel, hojas cuadriculadas.","precio":12500,"precioOferta":9900,"disponibilidad":"disponible","destacado":true,"emoji":"📒","imagen":""},
+  {"id":"p2","nombre":"Agenda 2027 floral","categoria":"Agendas","descripcion":"Agenda semanal con stickers y separadores.","precio":38000,"precioOferta":"","disponibilidad":"pocas","destacado":true,"emoji":"📔","imagen":""},
+  {"id":"p3","nombre":"Resaltadores pastel x6","categoria":"Escritura","descripcion":"Seis colores suaves, punta biselada.","precio":22000,"precioOferta":18500,"disponibilidad":"disponible","destacado":false,"emoji":"🖍️","imagen":""},
+  {"id":"p4","nombre":"Lápices de colores x24","categoria":"Arte","descripcion":"Colores intensos, ideales para colorear y dibujar.","precio":28000,"precioOferta":"","disponibilidad":"disponible","destacado":false,"emoji":"✏️","imagen":""},
+  {"id":"p5","nombre":"Plancha de stickers kawaii","categoria":"Decoración","descripcion":"Stickers para decorar cuadernos, agendas y más.","precio":4500,"precioOferta":"","disponibilidad":"disponible","destacado":false,"emoji":"🌸","imagen":""},
+  {"id":"p6","nombre":"Cartuchera de tela","categoria":"Accesorios","descripcion":"Cartuchera con cremallera y estampado pastel.","precio":19000,"precioOferta":"","disponibilidad":"agotado","destacado":false,"emoji":"👝","imagen":""},
+  {"id":"p7","nombre":"Kit escolar básico","categoria":"Kits","descripcion":"Cuaderno, lápices, borrador, tajalápiz y regla.","precio":45000,"precioOferta":"","disponibilidad":"encargo","destacado":false,"emoji":"🎒","imagen":""},
+  {"id":"p8","nombre":"Notas adhesivas x4 colores","categoria":"Oficina","descripcion":"400 notas adhesivas en colores pastel.","precio":8500,"precioOferta":"","disponibilidad":"pocas","destacado":false,"emoji":"🗒️","imagen":""}
+ ],
+ "acceso": null
+}
