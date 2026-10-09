@@ -10,18 +10,6 @@
  },
  "productos": [
   {
-   "id": "p2",
-   "nombre": "Agenda 2027 floral",
-   "categoria": "Agendas",
-   "descripcion": "Agenda semanal con stickers y separadores.",
-   "precio": 38000,
-   "precioOferta": "",
-   "disponibilidad": "pocas",
-   "destacado": true,
-   "emoji": "📔",
-   "imagen": ""
-  },
-  {
    "id": "p1",
    "nombre": "Cuaderno argollado grande, 80 hojas",
    "categoria": "Cuadernos",
@@ -32,6 +20,18 @@
    "destacado": true,
    "emoji": "📒✨",
    "imagen": "imagenes/p1-mv1f39b6.jpg"
+  },
+  {
+   "id": "p2",
+   "nombre": "Agenda 2027 floral",
+   "categoria": "Agendas",
+   "descripcion": "Agenda semanal con stickers y separadores.",
+   "precio": 38000,
+   "precioOferta": "",
+   "disponibilidad": "pocas",
+   "destacado": true,
+   "emoji": "📔",
+   "imagen": ""
   },
   {
    "id": "p3",
