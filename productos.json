@@ -11,7 +11,7 @@
  "productos": [
   {
    "id": "p1",
-   "nombre": "Cuaderno argollado pastel 100 hojas",
+   "nombre": "Cuaderno argollado pastel 100 hojas y prueba",
    "categoria": "Cuadernos",
    "descripcion": "Tapa dura en tonos pastel, hojas cuadriculadas.",
    "precio": 12500,
