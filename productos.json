@@ -70,18 +70,6 @@
    "imagen": ""
   },
   {
-   "id": "p6",
-   "nombre": "Cartuchera de tela",
-   "categoria": "Accesorios",
-   "descripcion": "Cartuchera con cremallera y estampado pastel.",
-   "precio": 19000,
-   "precioOferta": "",
-   "disponibilidad": "agotado",
-   "destacado": false,
-   "emoji": "👝",
-   "imagen": ""
-  },
-  {
    "id": "p7",
    "nombre": "Kit escolar básico",
    "categoria": "Kits",
@@ -92,6 +80,18 @@
    "destacado": false,
    "emoji": "🎒",
    "imagen": "imagenes/p7-mv1i7tfk.jpg"
+  },
+  {
+   "id": "p6",
+   "nombre": "Cartuchera de tela",
+   "categoria": "Accesorios",
+   "descripcion": "Cartuchera con cremallera y estampado pastel.",
+   "precio": 19000,
+   "precioOferta": "",
+   "disponibilidad": "agotado",
+   "destacado": false,
+   "emoji": "👝",
+   "imagen": ""
   },
   {
    "id": "p8",
