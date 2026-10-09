@@ -10,18 +10,6 @@
  },
  "productos": [
   {
-   "id": "p1",
-   "nombre": "Cuaderno argollado grande, 80 hojas",
-   "categoria": "Cuadernos",
-   "descripcion": "Tapa dura en diferentes motivos, hojas cuadriculadas, hoja de stickers.",
-   "precio": 22,
-   "precioOferta": 20,
-   "disponibilidad": "disponible",
-   "destacado": true,
-   "emoji": "📒✨",
-   "imagen": "imagenes/p1-mv1f39b6.jpg"
-  },
-  {
    "id": "p2",
    "nombre": "Agenda 2027 floral",
    "categoria": "Agendas",
@@ -32,6 +20,18 @@
    "destacado": true,
    "emoji": "📔",
    "imagen": ""
+  },
+  {
+   "id": "p1",
+   "nombre": "Cuaderno argollado grande, 80 hojas",
+   "categoria": "Cuadernos",
+   "descripcion": "Tapa dura en diferentes motivos, hojas cuadriculadas, hoja de stickers.",
+   "precio": 22,
+   "precioOferta": 20,
+   "disponibilidad": "disponible",
+   "destacado": true,
+   "emoji": "📒✨",
+   "imagen": "imagenes/p1-mv1f39b6.jpg"
   },
   {
    "id": "p3",
