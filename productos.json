@@ -35,15 +35,15 @@
   },
   {
    "id": "p3",
-   "nombre": "Resaltadores pastel x6",
-   "categoria": "Escritura",
-   "descripcion": "Seis colores suaves, punta biselada.",
-   "precio": 22000,
-   "precioOferta": 18500,
+   "nombre": "Resaltadores pastel Pelikan x10",
+   "categoria": "Resaltador",
+   "descripcion": "Diez colores suaves Flash pastel",
+   "precio": 40000,
+   "precioOferta": 36000,
    "disponibilidad": "disponible",
    "destacado": false,
    "emoji": "🖍️",
-   "imagen": ""
+   "imagen": "imagenes/p3-mv1i28z4.jpg"
   },
   {
    "id": "p4",
