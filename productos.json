@@ -47,15 +47,15 @@
   },
   {
    "id": "p2",
-   "nombre": "Agenda 2027 floral",
-   "categoria": "Agendas",
-   "descripcion": "Agenda semanal con stickers y separadores.",
-   "precio": 38000,
-   "precioOferta": "",
+   "nombre": "Cuaderno Mafalda",
+   "categoria": "Cuaderno grande",
+   "descripcion": "Cuaderno grande, pasta dura, 80 hojas y con stickers",
+   "precio": 22000,
+   "precioOferta": 20000,
    "disponibilidad": "pocas",
    "destacado": true,
    "emoji": "📔",
-   "imagen": ""
+   "imagen": "imagenes/p2-mv2rbbxp.jpg"
   },
   {
    "id": "p5",
