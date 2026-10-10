@@ -34,18 +34,6 @@
    "imagen": "imagenes/p7-mv1i7tfk.jpg"
   },
   {
-   "id": "p2",
-   "nombre": "Agenda 2027 floral",
-   "categoria": "Agendas",
-   "descripcion": "Agenda semanal con stickers y separadores.",
-   "precio": 38000,
-   "precioOferta": "",
-   "disponibilidad": "pocas",
-   "destacado": true,
-   "emoji": "📔",
-   "imagen": ""
-  },
-  {
    "id": "p4",
    "nombre": "Lápices de colores x24",
    "categoria": "Arte",
@@ -55,6 +43,18 @@
    "disponibilidad": "disponible",
    "destacado": false,
    "emoji": "✏️",
+   "imagen": ""
+  },
+  {
+   "id": "p2",
+   "nombre": "Agenda 2027 floral",
+   "categoria": "Agendas",
+   "descripcion": "Agenda semanal con stickers y separadores.",
+   "precio": 38000,
+   "precioOferta": "",
+   "disponibilidad": "pocas",
+   "destacado": true,
+   "emoji": "📔",
    "imagen": ""
   },
   {
