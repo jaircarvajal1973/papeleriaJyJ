@@ -35,15 +35,15 @@
   },
   {
    "id": "p4",
-   "nombre": "Lápices de colores x24",
-   "categoria": "Arte",
-   "descripcion": "Colores intensos, ideales para colorear y dibujar.",
-   "precio": 28000,
+   "nombre": "Bolígrafo retractil de colores x12",
+   "categoria": "Boligrafos",
+   "descripcion": "Colores intensos, ideales para escribir día a día.",
+   "precio": 10000,
    "precioOferta": "",
    "disponibilidad": "disponible",
    "destacado": false,
-   "emoji": "✏️",
-   "imagen": ""
+   "emoji": "🖊️",
+   "imagen": "imagenes/p4-mv2rfz1a.jpg"
   },
   {
    "id": "p2",
